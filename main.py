@@ -54,7 +54,7 @@ class asyncDemo:
         self.task_delay_three = TASK_THREE_DELAY
         self.start_time_prod = self.start_time
         self.task_four_var = 1
-        self.cmd_queue = []
+     
 
 
     async def taskOne(self):
@@ -95,18 +95,7 @@ class asyncDemo:
         return inputVal
 
 
-    async def producer(self):
-        now = time.time()
-        if (now - self.start_time_prod > self.task_delay_two):
-            print(mg + ": Do task three")
-            self.start_time_three = now
-            returnVal = await self.taskFour(self.task_four_var)  ## WHY DOES THIS LINE SEEM BLOCKING?
-            print(timestamp(now) +f": Task 4 has been returned with variable: {returnVal}")
-            self.task_four_var = returnVal  # For another test make this a returned value from taskThree
-        else:
-            await asyncio.sleep(1)
-
-
+   
     def main(self):
         loop = asyncio.new_event_loop()
         loop.create_task(self.taskOne())
